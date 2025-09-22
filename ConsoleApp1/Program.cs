@@ -2,12 +2,13 @@
 {
     static void Main()
     {
-        string numbers = "";
-        List<string> letters = Task.GetLetters(numbers);
+        string numbers = "448537";
+        List<string> lettersByCicle = Task.GetLetters(numbers);
+        List<string> lettersByRecursion = Task.GetLettersByRecursion(numbers);
 
-        foreach (string lettersTemp in letters)
+        for (int i = 0; i < lettersByRecursion.Count; i++)
         {
-            Console.WriteLine(lettersTemp);
+            Console.WriteLine(lettersByRecursion[i]);
         }
     }
 }

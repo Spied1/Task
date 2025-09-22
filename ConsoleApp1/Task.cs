@@ -11,7 +11,7 @@
             { '8', "tuv"},
             { '9', "wxyz"} };
 
-    private static void Reqursion(string digits, int index, string current, List<string> result)
+    private static void Recursion(string digits, int index, string current, List<string> result)
     {
         if (digits.Length == index)
         {
@@ -21,8 +21,21 @@
 
         foreach (char character in numbers[digits[index]])
         {
-            Reqursion(digits, index + 1, current + character, result);
+            Recursion(digits, index + 1, current + character, result);
         }
+    }
+
+    public static List<string> GetLettersByRecursion(string digits)
+    {
+        List<string> result = [];
+        if (digits.Length == 0)
+        {
+            return result;
+        }
+
+        Recursion(digits, 0, "", result);
+
+        return result;
     }
 
     public static List<string> GetLetters(string digits)
@@ -33,7 +46,21 @@
             return result;
         }
 
-        Reqursion(digits, 0, "", result);
+        result.Add ("");
+
+        for (int i = 0; i < digits.Length; i++) 
+        {
+            List<string> resultTemp = [];
+            foreach(string combination in result)
+            {
+                foreach(char character in numbers[digits[i]])
+                {
+                    resultTemp.Add(combination + character);
+                }
+
+                result = new List<string>(resultTemp);
+            }
+        }
 
         return result;
     }
